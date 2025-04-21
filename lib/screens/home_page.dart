@@ -72,42 +72,47 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget listItem(int index){
-    return Card(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: ClipRRect(
-              borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(10)),
-              child: Image.network(
-                controller.productList.value.products![index].thumbnail.toString(),
-                fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () {
+        Get.toNamed("productDetailsPage",arguments: controller.productList.value.products![index]);
+      },
+      child: Card(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(
+              child: ClipRRect(
+                borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(10)),
+                child: Image.network(
+                  controller.productList.value.products![index].thumbnail.toString(),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              controller.productList.value.products![index].title.toString(),
-              style: TextStyle(
-                  fontWeight: FontWeight.w600, fontSize: 14),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-          Padding(
-            padding:
-            const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Text("\$${controller.productList.value.products?[index].price}",
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                controller.productList.value.products![index].title.toString(),
                 style: TextStyle(
-                    color: Colors.green[700],
-                    fontWeight: FontWeight.bold)),
-          ),
-          const SizedBox(height: 8),
-        ],
+                    fontWeight: FontWeight.w600, fontSize: 14),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            Padding(
+              padding:
+              const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text("\$${controller.productList.value.products?[index].price}",
+                  style: TextStyle(
+                      color: Colors.green[700],
+                      fontWeight: FontWeight.bold)),
+            ),
+            const SizedBox(height: 8),
+          ],
+        ),
       ),
     );
   }

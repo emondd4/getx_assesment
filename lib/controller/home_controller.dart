@@ -99,7 +99,7 @@ class HomeController extends GetxController {
 
   Future getQueryProductList(String query) async {
 
-    Map<String,dynamic> temp = {"search":query};
+    Map<String,dynamic> temp = {"q":query};
 
     CommonUtil.instance.internetCheck().then((value) async {
       if (value) {
